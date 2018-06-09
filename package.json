@@ -16,7 +16,7 @@
     "axios": "^0.18.0",
     "element-ui": "^2.4.1",
     "npm": "^6.1.0",
-    "nuxt": "^1.0.0"
+    "nuxt": "^1.4.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
