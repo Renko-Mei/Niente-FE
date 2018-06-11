@@ -11,9 +11,11 @@
       <ul
         class="nav-list"
         @click="$emit('close')">
-        <li class="nav-item"><nuxt-link to="/posts">Blog</nuxt-link></li>
-        <li class="nav-item"><nuxt-link to="/about">About</nuxt-link></li>
-        <li class="nav-item"><nuxt-link to="/admin">Admin</nuxt-link></li>
+        <li class="nav-item"><nuxt-link to="/">Niente</nuxt-link></li>
+        <li class="nav-item"><nuxt-link to="/articles">Blog</nuxt-link></li>
+        <li class="nav-item"><nuxt-link to="/about">About</nuxt-link></li>  
+        <li class="nav-item"><nuxt-link to="/">Commentary</nuxt-link></li>
+        <li class="nav-item"><nuxt-link to="/">Life</nuxt-link></li>
       </ul>
     </div>
   </transition>
@@ -52,7 +54,7 @@ export default {
 .sidenav {
   height: 100%;
   width: 300px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.9);
   z-index: 10000;
   position: fixed;
   top: 0;

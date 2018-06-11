@@ -1,20 +1,28 @@
 <template>
-<div class="header-container">
-  <header class="the-header">
+  <div class="header-container">
+
+    <header @mouseover="showHeader = true" @mouseleave="showHeader = false" class="the-header">
     <TheSideNavToggle @toggle="$emit('sidenavToggle')" />
-    <div class="logo">
-      <nuxt-link to="/">Niente</nuxt-link>
-    </div>
-    <div class="spacer"></div>
-    <div class="navigation-items">
-      <ul class="nav-list">
-        <li class="nav-item"><nuxt-link to="/articles">Blog</nuxt-link></li>
-        <li class="nav-item"><nuxt-link to="/about">About</nuxt-link></li>
-        <li class="nav-item"><nuxt-link to="/admin">Admin</nuxt-link></li>
-      </ul>
-    </div>
-  </header>
-</div>
+    <transition name="el-zoom-in-top">
+      <div v-show="showHeader" class="navigation-items">
+        <ul class="nav-list">
+          <li class="left-blank"></li>
+          <li class="nav-item"><nuxt-link to="/articles">Blog</nuxt-link></li>
+          <li class="nav-item"><nuxt-link to="/about">About</nuxt-link></li>
+          <li class="nav-item"><nuxt-link to="/">Niente</nuxt-link></li>
+          <li class="nav-item"><nuxt-link to="/">Commentary</nuxt-link></li>
+          <li class="nav-item"><nuxt-link to="/">Life</nuxt-link></li>
+          <li class="right-blank"></li>
+        </ul>
+      </div>
+    </transition>
+    </header>
+    
+    <transition name="el-fade-in">
+      <i v-show="!showHeader" class="el-icon-d-arrow-right"></i>
+    </transition>
+
+  </div>
 </template>
 
 <script>
@@ -22,8 +30,16 @@ import TheSideNavToggle from "@/components/header/TheSideNavToggle";
 
 export default {
   name: "TheHeader",
+
+  data: () => ({
+    showHeader: false
+  }),
+
   components: {
     TheSideNavToggle
+  },
+
+  methods: {
   }
 };
 </script>
@@ -31,38 +47,50 @@ export default {
 
 <style scoped>
 .header-container {
-  height: 60px;
+  padding: 0;
+  height: 80px;
+  text-align: center;
 }
 
 .the-header {
   width: 100%;
   position: fixed;
-  height: 60px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background-color: black;
   z-index: 100;
   box-sizing: border-box;
-  padding: 0 20px;
+  display: flex;
+  height: 80px;
 }
 
-.logo {
-  margin: 0 10px;
-  font-size: 1.3rem;
+.el-icon-d-arrow-right {
+  position: absolute;
+  top: -20px;
+  -webkit-transform: scale(1.5, 0.5) rotate(90deg);
+  -moz-transform: scale(1.5, 0.5) rotate(90deg);
+  -ms-transform: scale(1.5, 0.5) rotate(90deg);
+  -o-transform: scale(1.5, 0.5) rotate(90deg);
+  transform: scale(1.5, 0.5) rotate(90deg);
+  font-size: 5rem;
 }
 
-.logo a {
-  text-decoration: none;
-  color: white;
+.el-zoom-in-top-leave-active {
+  transition: 0.5s;
 }
 
-.spacer {
-  flex: 1;
+.el-fade-in-leave-active {
+  transition: 0s;
 }
+
+.el-fade-in-enter-active {
+  transition: 2s;
+  transition-delay: 3s;
+}
+
 
 .navigation-items {
+  width: 100%;
   display: none;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 0 20px;
 }
 
 @media (min-width: 768px) {
@@ -72,24 +100,23 @@ export default {
 }
 
 .nav-list {
+  margin: 0;
   list-style: none;
   padding: 0;
-  margin: 0;
   display: flex;
-}
-
-.nav-item {
-  margin: 0 10px;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
 }
 
 .nav-item a {
+  font-size: 18px;
+  color: black;
   text-decoration: none;
-  color: white;
 }
 
 .nav-item a:hover,
-.nav-item a:active,
-.nav-item a.nuxt-link-active {
+.nav-item a:active {
   color: red;
 }
 </style>

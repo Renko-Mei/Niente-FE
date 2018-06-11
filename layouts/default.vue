@@ -36,4 +36,10 @@ html {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
 }
+
+body {
+  background-color: blanchedalmond;
+  padding: 0;
+  margin: 0;
+}
 </style>
