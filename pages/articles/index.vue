@@ -1,63 +1,63 @@
 <template>
-    <div class="articles-page">
-        <h1>Articles</h1>
-        <ul v-if="articles && articles.length">
-            <li v-for="article in articles" :key="article.id">
-                <p><strong>{{article.title}}</strong></p>
-                <p>{{article.content}}</p>
-                <articlePreview
-                    :id = "article.id"
-                    :title = "article.title"
-                    shortText = "Nothing here"
-                    :thumbnail = "'/images/article' + article.id + '.jpg'"
-                />
-            </li>
-        </ul>
-    </div>
+  <el-container>
+    <el-header>
+      <h1>Articles</h1>
+    </el-header>
+    <el-main>
+      <ul v-if="articles && articles.length" class="article-preview-container">
+        <articlePreview
+          v-for="article in articles"
+          :key="article.id"
+          :is-admin="isAdmin"
+          :id="article.id"
+          :title="article.title"
+          :subtitle="article.subtitle"
+          :thumbnail="'/images/article' + article.id + '.jpg'"
+        />
+      </ul>
+    </el-main>
+  </el-container>
 </template>
 
 <script>
-import axios from "axios";
-import articlePreview from "~/components/articles/preview"
+import articlePreview from "~/components/articles/preview";
 
 export default {
-    data() {
-        return {
-            articles: [],
-        };
-    },
-    components: {
-        articlePreview
-    },
-
-    async mounted() {
-        try {
-            const response = await axios.get('http://localhost:43366/api/Articles/');
-            this.articles = response.data
-        } catch (e) {
-            console.log(e.message);
-        }
+  components: {
+    articlePreview
+  },
+  computed: {
+    articles() {
+      return this.$store.getters.loadedArticles;
     }
+  },
+  props: {
+    isAdmin: {
+      type: Boolean,
+      default: false
+    }
+  }
 };
 </script>
 
 <style scoped>
 h1 {
-    text-align: center;
+  text-align: center;
 }
-/* .articles-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
+
+.article-preview-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: top;
+  flex-wrap: wrap;
+}
+
 ul {
-    display: block;
-    padding: 0;
+  display: block;
+  padding: 0;
 }
-li {
-    margin: auto;
-    width: 40%;
-    display: table;
-    margin: 0 auto;
+
+.el-main {
+  padding: 0;
 }
 </style>
