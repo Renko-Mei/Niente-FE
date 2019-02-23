@@ -1,0 +1,11 @@
+{
+    "files.exclude": {
+        ".gitignore": true,
+        ".nuxt/": true,
+        ".vscode/": true,
+        "**/README.md": true,
+        "LICENSE": true,
+        "node_modules/": true
+    },
+    "editor.tabSize": 2
+}
