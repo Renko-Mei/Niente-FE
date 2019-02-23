@@ -4,7 +4,7 @@
             <img alt="thumbnail" class="article-thumbnail" :src="thumbnail"/>
             <div class="preview-content">
                 <h1>{{ title }}</h1>
-                <p>{{ shortText }}</p>
+                <p>{{ subtitle }}</p>
             </div>
         </article>
     </nuxt-link>
@@ -22,7 +22,7 @@ export default {
             type: String,
             required: true
         },
-        shortText: {
+        subtitle: {
             type: String,
             required: true
         },
@@ -36,13 +36,16 @@ export default {
 
 <style scoped>
 article {
+    min-width: 468px;
+    width: 24vw;
+    min-height: 240px;
+    height: 20vw;
     position: relative;
 }
 .article-thumbnail {
     width: 100%;
-    height: 200px;
-    background-position: center;
-    background-size: cover;
+    height: 100%;
+    object-fit: cover;
 }
 
 .preview-content {
@@ -50,7 +53,6 @@ article {
     margin: auto;
     width: 100%;
     bottom: 0px;
-    padding: 10px;
     text-align: center;
     color: #000;
 }
