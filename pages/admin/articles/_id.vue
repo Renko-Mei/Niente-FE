@@ -1,18 +1,18 @@
 <template>
   <div class="admin-post-page">
     <section class="update-form">
-      <NewPostForm :post="loadedPost"/>
+      <newArticleForm :post="loadedPost"/>
     </section>
   </div>
 </template>
 
 <script>
-import NewPostForm from "@/components/articles/NewPostForm.vue";
+import newArticleForm from "@/components/articles/newArticleForm.vue";
 
 export default {
-  layout: 'admin',
+  //layout: 'admin',
   components: {
-    NewPostForm
+    newArticleForm
   },
   data() {
     return {
