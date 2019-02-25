@@ -1,11 +1,11 @@
 <template>
-  <nuxt-link class="post-preview" :to="postLink">
+  <nuxt-link class="article-preview" :to="actionLink">
     <article>
       <div
-        class="post-thumbnail"
-        :style="{ backgroundImage: 'url(' + thumbnail + ')' }"
+        class="article-thumbnail"
+        :style="{ backgroundImage: 'url(' + previewImageUri + ')' }"
       ></div>
-      <div class="post-content">
+      <div class="article-content">
         <h1>{{ title }}</h1>
         <p>{{ previewText }}</p>
       </div>
@@ -18,7 +18,7 @@ export default {
   name: 'articlePreview',
   props: {
     id: {
-      type: String,
+      type: Number,
       required: true
     },
     title: {
@@ -29,18 +29,18 @@ export default {
       type: String,
       required: true
     },
-    thumbnail: {
+    previewImageUri: {
       type: String,
       required: true
     },
-    isAdmin: {
+    forEdit: {
       type: Boolean,
       required: true
     }
   },
   computed: {
-    postLink() {
-      return this.isAdmin ? '/admin/articles/' + this.id : '/articles/' + this.id
+    actionLink() {
+      return this.forEdit ? '~/admin/articles/' + this.id : '~/articles/' + this.id
     }
   }
 }
@@ -48,7 +48,7 @@ export default {
 
 
 <style scoped>
-.post-preview {
+.article-preview {
   border: 1px solid #ccc;
   box-shadow: 0 2px 2px #ccc;
   background-color: white;
@@ -61,26 +61,26 @@ a {
 }
 
 @media (min-width: 850px) {
-  .post-preview {
+  .article-preview {
     width: 400px;
     margin: 10px;
   }
 }
 
-.post-thumbnail {
+.article-thumbnail {
   width: 100%;
   height: 200px;
   background-position: center;
   background-size: cover;
 }
 
-.post-content {
+.article-content {
   padding: 10px;
   text-align: center;
 }
 
-a:hover .post-content,
-a:active .post-content {
+a:hover .article-content,
+a:active .article-content {
   background-color: #ccc;
 }
 </style>

@@ -4,23 +4,23 @@ import axios from "axios";
 const createStore = () => {
   return new Vuex.Store({
     state: {
-      loadedArticles: []
+      loadedArticlePreviews: []
     },
     mutations: {
       // post: payload
-      setArticles(state, articles) {
-        state.loadedArticles = articles;
+      setArticlePreviews(state, previews) {
+        state.loadedArticlePreviews = previews;
       }
     },
     actions: {
-      setArticles(veuxContext, articles) {
-        veuxContext.commit('setArticles', articles);
+      setArticlePreviews(veuxContext, previews) {
+        veuxContext.commit('setArticlePreviews', previews);
       },
       async nuxtServerInit(veuxContext, context) {
         try {
-          console.log("Getting response from the server");
-          let res = await axios.get("https://niente-177123.appspot.com/api/articles/");
-          veuxContext.commit('setArticles', res.data);
+          console.log("Getting response from the server...");
+          let res = await axios.get("https://niente-177123.appspot.com/api/articlepreviews/");
+          veuxContext.commit('setArticlePreviews', res.data);
         }
         catch (e) {
           console.log(e);
@@ -29,8 +29,8 @@ const createStore = () => {
       }
     },
     getters: {
-      loadedArticles(state) {
-        return state.loadedArticles;
+      loadedArticlePreviews(state) {
+        return state.loadedArticlePreviews;
       }
     }
   });

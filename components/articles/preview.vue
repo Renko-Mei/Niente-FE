@@ -1,10 +1,10 @@
 <template>
     <nuxt-link :to="'/articles/' + id" class="article-preview">
         <article>
-            <img alt="thumbnail" class="article-thumbnail" :src="thumbnail"/>
+            <img alt="thumbnail" class="article-thumbnail" :src="previewImageUri"/>
             <div class="preview-content">
                 <h1>{{ title }}</h1>
-                <p>{{ subtitle }}</p>
+                <p>{{ previewText }}</p>
             </div>
         </article>
     </nuxt-link>
@@ -22,11 +22,11 @@ export default {
             type: String,
             required: true
         },
-        subtitle: {
+        previewText: {
             type: String,
             required: true
         },
-        thumbnail: {
+        previewImageUri: {
             type: String,
             required: true
         }

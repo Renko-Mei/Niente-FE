@@ -4,15 +4,15 @@
       <h1>Articles</h1>
     </el-header>
     <el-main>
-      <ul v-if="articles && articles.length" class="article-preview-container">
+      <ul v-if="articlePreviews && articlePreviews.length" class="article-preview-container">
         <articlePreview
-          v-for="article in articles"
-          :key="article.id"
-          :is-admin="isAdmin"
-          :id="article.id"
-          :title="article.title"
-          :subtitle="article.subtitle"
-          :thumbnail="'/images/article' + article.id + '.jpg'"
+          v-for="preview in articlePreviews"
+          :key="preview.id"
+          :id="preview.id"
+          :title="preview.title"
+          :previewText="preview.previewText"
+          :previewImageUri="'/images/article' + preview.id + '.jpg'"
+          :for-edit=false
         />
       </ul>
     </el-main>
@@ -27,14 +27,8 @@ export default {
     articlePreview
   },
   computed: {
-    articles() {
-      return this.$store.getters.loadedArticles;
-    }
-  },
-  props: {
-    isAdmin: {
-      type: Boolean,
-      default: false
+    articlePreviews() {
+      return this.$store.getters.loadedArticlePreviews;
     }
   }
 };
