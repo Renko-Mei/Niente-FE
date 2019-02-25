@@ -2,12 +2,13 @@ module.exports = {
   /*
   ** Headers of the page
   */
+  mode: "universal",
   head: {
-    title: 'Niente',
+    title: 'neu',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Cliente side of Niente' }
+      { hid: 'description', name: 'description', content: 'Renko\'s blog' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -46,5 +47,8 @@ module.exports = {
   */
   plugins: [
     '@/plugins/element-ui'
-  ]
+  ],
+  env: {
+    baseUrl: process.env.BASE_URL || "https://niente-177123.appspot.com/api"
+  }
 }

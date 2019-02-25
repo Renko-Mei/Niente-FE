@@ -29,7 +29,7 @@ export default {
         return { article };
 			})
 			.catch(e => {
-				error({ statusCode: 404, message: 'Post not found' });
+				error({ statusCode: 404, message: 'Article not found' });
 			});
   },
   data() {
