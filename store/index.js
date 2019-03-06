@@ -1,5 +1,4 @@
 import Vuex from 'vuex';
-import axios from "axios";
 
 const createStore = () => {
   return new Vuex.Store({
@@ -28,22 +27,22 @@ const createStore = () => {
       },
       async addArticlePreview(veuxContext, article) {
         try {
-          const res = await axios.post(process.env.baseUrl + '/articles/', article);
-          veuxContext.commit('addArticlePreview', { id: res.data.id, ...article });
+          const data = await this.$axios.$post(process.env.baseUrl + '/articles/', article);
+          veuxContext.commit('addArticlePreview', { id: data.id, ...article });
         }
         catch (e) {
           return console.log(e);
         }
       },
       async editArticlePreview(veuxContext, article) {
-        const res = await axios.put(process.env.baseUrl + '/articles/' + article.id, article);
-        veuxContext.commit('editArticlePreview', res.data);
+        const data = await this.$axios.$put(process.env.baseUrl + '/articles/' + article.id, article);
+        veuxContext.commit('editArticlePreview', data);
       },
       async nuxtServerInit(veuxContext, context) {
         try {
-          console.log("Getting response from the server...");
-          let res = await axios.get(process.env.baseUrl + "/articlepreviews/");
-          veuxContext.commit('setArticlePreviews', res.data);
+          let limit = 5; // auto calculate this value based on screensize?
+          let data = await context.app.$axios.$get("/articlepreviews/?limit=" + String(limit));
+          veuxContext.commit('setArticlePreviews', data);
         }
         catch (e) {
           context.error(e);

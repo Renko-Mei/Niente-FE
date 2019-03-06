@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import newArticleForm from "@/components/articles/newArticleForm.vue";
 
 export default {

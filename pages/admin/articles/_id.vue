@@ -8,17 +8,16 @@
 
 <script>
 import newArticleForm from "@/components/articles/newArticleForm.vue";
-import axios from "axios";
 
 export default {
   components: {
     newArticleForm
   },
-  asyncData({ params, error }) {
-    return axios
-      .get(process.env.baseUrl + "/articles/" + params.id)
-      .then(res => {
-        let article = res.data;
+  asyncData(context) {
+    return context.app.$axios
+      .$get(process.env.baseUrl + "/articles/" + context.params.id)
+      .then(data => {
+        let article = data;
         return { article };
       })
       .catch(e => {
