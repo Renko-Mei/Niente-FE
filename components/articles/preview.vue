@@ -1,64 +1,87 @@
 <template>
-    <nuxt-link :to="'/articles/' + id" class="article-preview">
-        <article>
-            <img alt="thumbnail" class="article-thumbnail" :src="previewImageUri"/>
-            <div class="preview-content">
-                <h1>{{ title }}</h1>
-                <p>{{ previewText }}</p>
-            </div>
-        </article>
-    </nuxt-link>
+  <nuxt-link class="article-preview" :to="actionLink">
+    <article>
+      <div
+        class="article-thumbnail"
+        :style="{ backgroundImage: 'url(' + previewImageUri + ')' }"
+      ></div>
+      <div class="article-content">
+        <h1>{{ title }}</h1>
+        <p>{{ previewText }}</p>
+      </div>
+    </article>
+  </nuxt-link>
 </template>
 
 <script>
 export default {
-    name: 'ArticlePreview',
-    props: {
-        id: {
-            type: Number,
-            required: true
-        },
-        title: {
-            type: String,
-            required: true
-        },
-        previewText: {
-            type: String,
-            required: true
-        },
-        previewImageUri: {
-            type: String,
-            required: true
-        }
+  name: 'Preview',
+  props: {
+    id: {
+      type: Number,
+      required: true
+    },
+    title: {
+      type: String,
+      required: true
+    },
+    previewText: {
+      type: String,
+      required: true
+    },
+    previewImageUri: {
+      type: String,
+      required: true
+    },
+    forEdit: {
+      type: Boolean,
+      required: true,
+      default: false
     }
-};
+  },
+  computed: {
+    actionLink() {
+      return this.forEdit ? '/admin/articles/' + this.id : '/articles/' + this.id
+    }
+  }
+}
 </script>
 
+
 <style scoped>
-article {
-    min-width: 468px;
-    width: 24vw;
-    min-height: 240px;
-    height: 20vw;
-    position: relative;
+.article-preview {
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 2px #ccc;
+  background-color: white;
+  width: 90%;
 }
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+@media (min-width: 850px) {
+  .article-preview {
+    width: 400px;
+    margin: 10px;
+  }
+}
+
 .article-thumbnail {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 200px;
+  background-position: center;
+  background-size: cover;
 }
 
-.preview-content {
-    position: absolute;
-    margin: auto;
-    width: 100%;
-    bottom: 0px;
-    text-align: center;
-    color: #000;
+.article-content {
+  padding: 10px;
+  text-align: center;
 }
 
-a:hover .preview-content,
-a:active .preview-content {
-    background-color: #ccc;
+a:hover .article-content,
+a:active .article-content {
+  background-color: #ccc;
 }
 </style>
