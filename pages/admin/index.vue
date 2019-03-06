@@ -4,7 +4,7 @@
       <AppButton @click="$router.push('/admin/articles/new')">Create Article</AppButton>
     </section>
     <section class="existing-articles">
-      <h1>Existing Articles</h1>
+      <h1><nuxt-link to="/admin/articles">Existing Articles</nuxt-link></h1>
     </section>
   </div>
 </template>
