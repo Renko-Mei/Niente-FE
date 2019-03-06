@@ -10,6 +10,7 @@
 import newArticleForm from "@/components/articles/newArticleForm.vue";
 
 export default {
+  middleware: 'auth',
   //layout: "admin",
   components: {
     newArticleForm

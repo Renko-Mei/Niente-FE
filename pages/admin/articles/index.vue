@@ -23,6 +23,7 @@
 import Preview from "~/components/articles/Preview";
 
 export default {
+  middleware: 'auth',
   components: {
     Preview
   },

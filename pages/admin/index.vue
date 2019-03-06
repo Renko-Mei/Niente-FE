@@ -15,6 +15,7 @@ export default {
   //layout: 'admin',
   components: {
     AppButton
-  }
+  },
+  middleware: 'auth'
 };
 </script>
