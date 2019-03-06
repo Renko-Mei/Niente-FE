@@ -6,8 +6,8 @@
     <el-main>
       <div class="article-detail">
         <h2>{{ article.previewText }}</h2>
-        <div>Created at {{ article.createAt }}</div>
-        <div>Last updated on {{ article.lastEditAt }}</div>
+        <div>Created on {{ article.createAt | date }}</div>
+        <div>Last updated on {{ article.lastEditAt | date }}</div>
       </div>
       <vue-markdown :source="article.body"/>
     </el-main>
@@ -15,18 +15,17 @@
 </template>
 
 <script>
-import axios from "axios";
 import VueMarkdown from "vue-markdown";
 
 export default {
   components: {
     VueMarkdown
   },
-  asyncData({ params, error }) {
-    return axios
-      .get(process.env.baseUrl + '/articles/' + params.id)
-      .then(res => {
-        let article = res.data;
+  asyncData(context) {
+    return context.app.$axios
+      .$get('/articles/' + context.params.id)
+      .then(data => {
+        let article = data;
         return { article };
 			})
 			.catch(e => {

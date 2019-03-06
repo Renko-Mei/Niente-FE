@@ -25,7 +25,7 @@ module.exports = {
     /*
     ** Run ESLint on save
     */
-    extend (config, { isDev, isClient }) {
+    extend(config, { isDev, isClient }) {
       if (isDev && isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -39,16 +39,24 @@ module.exports = {
   /*
   ** Global CSS
   */
- css: [
-  'element-ui/lib/theme-chalk/index.css'
+  css: [
+    'element-ui/lib/theme-chalk/index.css'
   ],
   /*
   ** Add element-ui in our app, see plugins/element-ui.js file
   */
   plugins: [
-    '@/plugins/element-ui'
+    '@/plugins/element-ui',
+    '@/plugins/date-filter',
+    '@/plugins/axios'
+  ],
+  modules: [
+    '@nuxtjs/axios',
   ],
   env: {
     baseUrl: process.env.BASE_URL || "http://ec2-34-222-33-125.us-west-2.compute.amazonaws.com/api"
+  },
+  axios: {
+    baseURL: process.env.BASE_URL || "http://ec2-34-222-33-125.us-west-2.compute.amazonaws.com/api"
   }
 }
