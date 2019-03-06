@@ -53,9 +53,6 @@ module.exports = {
   modules: [
     '@nuxtjs/axios',
   ],
-  env: {
-    baseUrl: process.env.BASE_URL || "http://ec2-34-222-33-125.us-west-2.compute.amazonaws.com/api"
-  },
   axios: {
     baseURL: process.env.BASE_URL || "http://ec2-34-222-33-125.us-west-2.compute.amazonaws.com/api"
   }
