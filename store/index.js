@@ -3,7 +3,8 @@ import Vuex from 'vuex';
 const createStore = () => {
   return new Vuex.Store({
     state: {
-      loadedArticlePreviews: []
+      loadedArticlePreviews: [],
+      token: null
     },
     mutations: {
       // post: payload
@@ -19,6 +20,9 @@ const createStore = () => {
         );
         // Load the full article maybe? 
         state.loadedArticlePreviews[index] = editedPreview;
+      },
+      setJwtToken(state, token) {
+        state.token = token
       }
     },
     actions: {
@@ -45,13 +49,25 @@ const createStore = () => {
           veuxContext.commit('setArticlePreviews', data);
         }
         catch (e) {
-          context.error(e);
+          throw e;
         }
+      },
+      async login(veuxContext, user) {
+        try {
+          let data = await this.$axios.$post('/login/', user);
+          veuxContext.commit('setJwtToken', data);
+        }
+        catch (e) {
+          throw e;
+        };
       }
     },
     getters: {
       loadedArticlePreviews(state) {
         return state.loadedArticlePreviews;
+      },
+      isAuthenticated(state) {
+        return state.token != null;
       }
     }
   });
