@@ -1,7 +1,7 @@
 <template>
   <div class="new-article-page">
     <section class="new-article">
-      <newArticleForm @submit="onSubmitted"/>
+      <newArticleForm @submit="onSubmit"/>
     </section>
   </div>
 </template>
@@ -27,11 +27,11 @@ export default {
     };
   },
   methods: {
-    onSubmitted(newArticle) {
-      this.$store.dispatch('addArticlePreview', newArticle)
+    onSubmit(article) {
+      this.$store.dispatch('addArticlePreview', article)
         .then(() => {
           this.$router.push('/admin/articles');
-        })
+        });
     }
   }
 };

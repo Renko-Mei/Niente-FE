@@ -26,15 +26,18 @@ const createStore = () => {
       setArticlePreviews(veuxContext, previews) {
         veuxContext.commit('setArticlePreviews', previews);
       },
-      addArticlePreview(veuxContext, preview) {
-        axios.post(process.env.baseUrl + '/articles/', preview)
-           .then(res => {
-             veuxContext.commit('addArticlePreview', {id: res.data.id, ...preview});
-           })
-           .catch(e => console.log(e));
+      async addArticlePreview(veuxContext, article) {
+        try {
+          const res = await axios.post(process.env.baseUrl + '/articles/', article);
+          veuxContext.commit('addArticlePreview', { id: res.data.id, ...article });
+        }
+        catch (e) {
+          return console.log(e);
+        }
       },
-      editArticlePreview(veuxContext, preview) {
-
+      async editArticlePreview(veuxContext, article) {
+        const res = await axios.put(process.env.baseUrl + '/articles/' + article.id, article);
+        veuxContext.commit('editArticlePreview', res.data);
       },
       async nuxtServerInit(veuxContext, context) {
         try {
