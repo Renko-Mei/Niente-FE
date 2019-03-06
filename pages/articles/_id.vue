@@ -5,6 +5,7 @@
     </el-header>
     <el-main>
       <div class="article-detail">
+        <h2>{{ article.previewText }}</h2>
         <div>Created at {{ article.createAt }}</div>
         <div>Last updated on {{ article.lastEditAt }}</div>
       </div>
@@ -23,7 +24,7 @@ export default {
   },
   asyncData({ params, error }) {
     return axios
-      .get('https://niente-177123.appspot.com/api/articles/' + params.id)
+      .get(process.env.baseUrl + '/articles/' + params.id)
       .then(res => {
         let article = res.data;
         return { article };
