@@ -28,12 +28,10 @@ export default {
   },
   methods: {
     onSubmitted(newArticle) {
-      axios.post('https://niente-177123.appspot.com/api/articles/', newArticle)
-           .then(res => {
-             console.log(res);
-             this.$router.push('/admin/articles');
-           })
-           .catch(e => console.log(e));
+      this.$store.dispatch('addArticlePreview', newArticle)
+        .then(() => {
+          this.$router.push('/admin/articles');
+        })
     }
   }
 };

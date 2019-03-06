@@ -11,25 +11,29 @@ const createStore = () => {
       setArticlePreviews(state, previews) {
         state.loadedArticlePreviews = previews;
       },
-      addNewArticle(state, newArticle) {
-        state.loadedArticlePreviews.push(newArticle);
+      addArticlePreview(state, preview) {
+        state.loadedArticlePreviews.push(preview);
       },
-      editArticle(state, editedArticle) {
-        const articleIndex = state.loadedArticlePreviews.findIndex(
-          article => article.id === editedArticle.id
+      editArticlePreview(state, editedPreview) {
+        const index = state.loadedArticlePreviews.findIndex(
+          preview => preview.id === editedPreview.id
         );
         // Load the full article maybe? 
-        state.loadedArticlePreviews[articleIndex] = editedArticle;
+        state.loadedArticlePreviews[index] = editedPreview;
       }
     },
     actions: {
       setArticlePreviews(veuxContext, previews) {
         veuxContext.commit('setArticlePreviews', previews);
       },
-      addArticle(veuxContext, article) {
-
+      addArticlePreview(veuxContext, preview) {
+        axios.post(process.env.baseUrl + '/articles/', preview)
+           .then(res => {
+             veuxContext.commit('addArticlePreview', {id: res.data.id, ...preview});
+           })
+           .catch(e => console.log(e));
       },
-      editArticle(veuxContext, editedArticle) {
+      editArticlePreview(veuxContext, preview) {
 
       },
       async nuxtServerInit(veuxContext, context) {
