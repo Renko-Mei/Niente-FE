@@ -5,7 +5,7 @@
     </el-header>
     <el-main>
       <ul v-if="articlePreviews && articlePreviews.length" class="article-preview-container">
-        <articlePreview
+        <Preview
           v-for="preview in articlePreviews"
           :key="preview.id"
           :id="preview.id"
@@ -20,11 +20,11 @@
 </template>
 
 <script>
-import articlePreview from "~/components/articles/preview";
+import Preview from "~/components/articles/Preview";
 
 export default {
   components: {
-    articlePreview
+    Preview
   },
   computed: {
     articlePreviews() {
