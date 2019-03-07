@@ -31,7 +31,8 @@ const createStore = () => {
       },
       async addArticlePreview(veuxContext, article) {
         try {
-          const data = await this.$axios.$post(process.env.baseUrl + '/articles/', article);
+          const data = await this.$axios.$post('/articles/', article);
+          console.log(data);
           veuxContext.commit('addArticlePreview', { id: data.id, ...article });
         }
         catch (e) {
@@ -39,12 +40,12 @@ const createStore = () => {
         }
       },
       async editArticlePreview(veuxContext, article) {
-        const data = await this.$axios.$put(process.env.baseUrl + '/articles/' + article.id, article);
+        const data = await this.$axios.$put('/articles/' + article.id, article);
         veuxContext.commit('editArticlePreview', data);
       },
       async nuxtServerInit(veuxContext, context) {
         try {
-          let limit = 5; // auto calculate this value based on screensize?
+          let limit = 50; // auto calculate this value based on screensize?
           let data = await context.app.$axios.$get("/articlepreviews/?limit=" + String(limit));
           veuxContext.commit('setArticlePreviews', data);
         }
@@ -68,6 +69,9 @@ const createStore = () => {
       },
       isAuthenticated(state) {
         return state.token != null;
+      },
+      jwtToken(state) {
+        return state.token != null ? state.token : "";
       }
     }
   });
