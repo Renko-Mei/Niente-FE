@@ -4,15 +4,15 @@
       <h1>Articles</h1>
     </el-header>
     <el-main>
-      <ul v-if="articlePreviews && articlePreviews.length" class="article-preview-container">
+      <ul v-if="previews && previews.length" class="article-preview-container">
         <Preview
-          v-for="preview in articlePreviews"
-          :key="preview.id"
-          :id="preview.id"
-          :title="preview.title"
-          :previewText="preview.previewText"
-          :previewImageUri="'/images/article' + preview.id + '.jpg'"
-          :for-edit=false
+          v-for="pv in previews"
+          :key="pv.id"
+          :id="pv.id"
+          :title="pv.title"
+          :previewText="pv.previewText"
+          :previewImageUri="'/images/article' + pv.id + '.jpg'"
+          :for-edit="false"
         />
       </ul>
     </el-main>
@@ -21,16 +21,15 @@
 
 <script>
 import Preview from "~/components/articles/Preview";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
     Preview
   },
-  computed: {
-    articlePreviews() {
-      return this.$store.getters.loadedArticlePreviews;
-    }
-  }
+  computed: mapGetters({
+    previews: "article/get"
+  })
 };
 </script>
 

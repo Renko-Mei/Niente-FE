@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     onSubmit(article) {
-      this.$store.dispatch("editArticlePreview", article).then(() => {
+      this.$store.dispatch("editPreview", article).then(() => {
         this.$router.push("/admin/articles");
       });
     }

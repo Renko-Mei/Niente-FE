@@ -29,7 +29,7 @@ export default {
   },
   computed: {
     articlePreviews() {
-      return this.$store.getters.loadedArticlePreviews;
+      return this.$store.getters.previews;
     }
   }
 };
