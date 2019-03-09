@@ -1,8 +1,8 @@
 {
   "name": "neu",
   "version": "1.0.0",
-  "description": "Cliente side of Niente",
-  "author": "Renko-Mei",
+  "description": "My luminous Nuxt.js project",
+  "author": "xwa132",
   "private": true,
   "scripts": {
     "dev": "nuxt",
@@ -13,17 +13,26 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.4.1",
-    "element-ui": "^2.5.4",
-    "npm": "^6.8.0",
-    "nuxt": "^2.4.5",
+    "@nuxtjs/auth": "^4.5.3",
+    "@nuxtjs/axios": "^5.3.6",
+    "cross-env": "^5.2.0",
+    "element-ui": "^2.4.11",
+    "nuxt": "^2.4.0",
     "vue-markdown": "^2.2.4"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.15.1",
-    "eslint-friendly-formatter": "^4.0.1",
-    "eslint-loader": "^2.1.2",
-    "eslint-plugin-vue": "^5.2.2"
+    "nodemon": "^1.18.9",
+    "@nuxtjs/eslint-config": "^0.0.1",
+    "babel-eslint": "^8.2.1",
+    "eslint": "^5.0.1",
+    "eslint-config-standard": ">=12.0.0",
+    "eslint-plugin-import": ">=2.14.0",
+    "eslint-plugin-jest": ">=21.24.1",
+    "eslint-plugin-node": ">=7.0.1",
+    "eslint-plugin-nuxt": ">=0.4.2",
+    "eslint-plugin-promise": ">=4.0.1",
+    "eslint-plugin-standard": ">=4.0.0",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-vue": "^5.0.0"
   }
 }
