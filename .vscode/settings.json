@@ -16,4 +16,5 @@
         },"html",
         "vue"
     ],
+    "eslint.enable": true,
 }

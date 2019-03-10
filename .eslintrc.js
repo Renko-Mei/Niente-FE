@@ -1,5 +1,5 @@
 module.exports = {
-  root: true,
+  root: false,
   env: {
     browser: true,
     node: true
@@ -12,5 +12,7 @@ module.exports = {
     'plugin:nuxt/recommended'
   ],
   // add your custom rules here
-  rules: {}
+  rules: {
+    'no-console': ['error', { allow: ['warn', 'log', 'error'] }]
+  }
 }
