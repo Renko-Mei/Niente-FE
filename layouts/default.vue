@@ -1,10 +1,11 @@
 <template>
   <div>
-    <the-header @sidenavToggle="displaySidenav = !displaySidenav"/>
+    <the-header @sidenavToggle="displaySidenav = !displaySidenav" />
     <the-side-nav
       :show="displaySidenav"
-      @close="displaySidenav = false"/>
-    <nuxt/>
+      @close="displaySidenav = false"
+    />
+    <nuxt />
   </div>
 </template>
 
@@ -19,12 +20,11 @@ export default {
   },
   data() {
     return {
-      displaySidenav: false,
+      displaySidenav: false
     }
   }
 }
 </script>
-
 
 <style>
 html {

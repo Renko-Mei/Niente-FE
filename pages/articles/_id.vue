@@ -9,36 +9,36 @@
         <div>Created on {{ article.createAt | date }}</div>
         <div>Last updated on {{ article.lastEditAt | date }}</div>
       </div>
-      <vue-markdown :source="article.body"/>
+      <vue-markdown :source="article.body" />
     </el-main>
   </el-container>
 </template>
 
 <script>
-import VueMarkdown from "vue-markdown";
+import VueMarkdown from 'vue-markdown'
 
 export default {
   components: {
     VueMarkdown
   },
+  data() {
+    return {
+      query_url: '',
+      article: {}
+    }
+  },
   asyncData(context) {
     return context.app.$axios
       .$get('/articles/' + context.params.id)
-      .then(data => {
-        let article = data;
-        return { article };
-			})
-			.catch(e => {
-				error({ statusCode: 404, message: 'Article not found' });
-			});
-  },
-  data() {
-    return {
-      query_url: "",
-      article: {}
-    };
+      .then((data) => {
+        const article = data
+        return { article }
+      })
+      .catch((e) => {
+        // error({ statusCode: 404, message: 'Article not found' })
+      })
   }
-};
+}
 </script>
 
 <style scoped>
