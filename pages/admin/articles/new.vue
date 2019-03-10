@@ -10,8 +10,8 @@
 import newArticleForm from "@/components/articles/newArticleForm.vue";
 
 export default {
-  middleware: 'auth',
-  //layout: "admin",
+  middleware: "auth",
+  // layout: "admin",
   components: {
     newArticleForm
   },
@@ -28,10 +28,9 @@ export default {
   },
   methods: {
     onSubmit(article) {
-      this.$store.dispatch('addPreview', article)
-        .then(() => {
-          this.$router.push('/admin/articles');
-        });
+      this.$store.dispatch("article/addPreview", article).then(() => {
+        this.$router.push("/admin/articles");
+      });
     }
   }
 };

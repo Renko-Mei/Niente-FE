@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import Preview from '~/components/articles/Preview'
-import { mapGetters } from 'vuex'
+import Preview from "~/components/articles/Preview";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -29,15 +29,17 @@ export default {
   },
   computed: {
     ...mapGetters({
-      previews: 'article/previews'
+      previews: "article/previews"
     })
   },
   async fetch({ store, params, app }) {
-    const limit = 10
-    const { data } = await app.$axios.get('articlepreviews?limit=' + limit)
-    store.commit('article/setPreviews', data)
+    const limit = 10;
+    if (store.getters['article/previews'].length === 0) {
+      const { data } = await app.$axios.get("articlepreviews?limit=" + limit);
+      store.commit("article/setPreviews", data);
+    }
   }
-}
+};
 </script>
 
 <style scoped>
