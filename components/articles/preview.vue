@@ -1,10 +1,10 @@
 <template>
-  <nuxt-link class="article-preview" :to="actionLink">
+  <nuxt-link :to="actionLink" class="article-preview">
     <article>
       <div
-        class="article-thumbnail"
         :style="{ backgroundImage: 'url(' + previewImageUri + ')' }"
-      ></div>
+        class="article-thumbnail"
+      />
       <div class="article-content">
         <h1>{{ title }}</h1>
         <p>{{ previewText }}</p>
@@ -46,7 +46,6 @@ export default {
   }
 }
 </script>
-
 
 <style scoped>
 .article-preview {

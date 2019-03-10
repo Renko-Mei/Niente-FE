@@ -1,37 +1,41 @@
 <template>
-<div class="sidenav-container">
-  <div
-    v-if="show"
-    class="sidenav-backdrop"
-    @click="$emit('close')"></div>
-  <transition name="slide-side">
-    <div
-      v-if="show"
-      class="sidenav">
-      <ul
-        class="nav-list"
-        @click="$emit('close')">
-        <li class="nav-item"><nuxt-link to="/articles">Blog</nuxt-link></li>
-        <li class="nav-item"><nuxt-link to="/about">About</nuxt-link></li>
-        <li class="nav-item"><nuxt-link to="/admin">Admin</nuxt-link></li>
-      </ul>
-    </div>
-  </transition>
-</div>
+  <div class="sidenav-container">
+    <div v-if="show" @click="$emit('close')" class="sidenav-backdrop" />
+    <transition name="slide-side">
+      <div v-if="show" class="sidenav">
+        <ul @click="$emit('close')" class="nav-list">
+          <li class="nav-item">
+            <nuxt-link to="/articles">
+              Blog
+            </nuxt-link>
+          </li>
+          <li class="nav-item">
+            <nuxt-link to="/about">
+              About
+            </nuxt-link>
+          </li>
+          <li class="nav-item">
+            <nuxt-link to="/admin">
+              Admin
+            </nuxt-link>
+          </li>
+        </ul>
+      </div>
+    </transition>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "TheSidenav",
+  name: 'TheSidenav',
   props: {
     show: {
       type: Boolean,
       default: false
     }
   }
-};
+}
 </script>
-
 
 <style scoped>
 .sidenav-container {

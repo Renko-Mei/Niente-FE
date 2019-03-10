@@ -1,18 +1,30 @@
 <template>
   <form @submit.prevent="onSave">
-    <AppControlInput v-model="articleToEdit.title">Title</AppControlInput>
-    <AppControlInput v-model="articleToEdit.previewText">Preview Text or Introduction</AppControlInput>
-    <AppControlInput v-model="articleToEdit.previewImageUri">Preview Image Link</AppControlInput>
-    <AppControlInput control-type="textarea" v-model="articleToEdit.body">Body</AppControlInput>
-    <AppButton type="submit">Save</AppButton>
+    <AppControlInput v-model="articleToEdit.title">
+      Title
+    </AppControlInput>
+    <AppControlInput v-model="articleToEdit.previewText">
+      Preview Text or Introduction
+    </AppControlInput>
+    <AppControlInput v-model="articleToEdit.previewImageUri">
+      Preview Image Link
+    </AppControlInput>
+    <AppControlInput v-model="articleToEdit.body" control-type="textarea">
+      Body
+    </AppControlInput>
+    <AppButton type="submit">
+      Save
+    </AppButton>
 
-    <AppButton type="button" style="margin-left: 10px" btn-style="cancel" @click="onCancel">Cancel</AppButton>
+    <AppButton @click="onCancel" type="button" style="margin-left: 10px" btn-style="cancel">
+      Cancel
+    </AppButton>
   </form>
 </template>
 
 <script>
-import AppControlInput from "@/components/UI/AppControlInput";
-import AppButton from "@/components/UI/AppButton";
+import AppControlInput from '@/components/UI/AppControlInput'
+import AppButton from '@/components/UI/AppButton'
 export default {
   components: {
     AppButton,
@@ -31,13 +43,13 @@ export default {
       articleToEdit: this.oldArticle
         ? { ...this.oldArticle }
         : {
-            title: "",
-            previewText: "",
-            body: "",
-            previewImageUri: "",
-            imageUris: []
-          }
-    };
+          title: '',
+          previewText: '',
+          body: '',
+          previewImageUri: '',
+          imageUris: []
+        }
+    }
   },
   methods: {
     onSave() {
@@ -46,8 +58,8 @@ export default {
     },
     onCancel() {
       // Navigate back
-      this.$router.push("/admin");
+      this.$router.push('/admin')
     }
   }
-};
+}
 </script>
