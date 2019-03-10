@@ -40,7 +40,8 @@ export default {
   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
   ],
   /*
   ** Axios module configuration
@@ -48,6 +49,29 @@ export default {
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
     baseURL: process.env.BASE_URL || 'http://ec2-34-222-33-125.us-west-2.compute.amazonaws.com/api'
+  },
+
+  /*
+  * Auth module configuration
+  */
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/login', method: 'post', propertyName: 'token' },
+          logout: { url: '/logout', method: 'post' },
+          user: false
+        },
+        // tokenRequired: true,
+        // tokenType: 'bearer',
+      }
+    },
+    redirect: {
+      login: '/login',
+      logout: '/',
+      callback: '/login',
+      home: '/'
+    }
   },
 
   /*

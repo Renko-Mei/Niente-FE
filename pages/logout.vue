@@ -1,27 +1,27 @@
 <template>
   <div class="admin-auth-page">
     <div class="auth-container">
-      <AppButton @click="logout()">Logout</AppButton>
+      <AppButton @click="logout()">
+        Logout
+      </AppButton>
     </div>
   </div>
 </template>
 
 <script>
-import AppButton from "@/components/UI/AppButton";
+import AppButton from '@/components/UI/AppButton'
 
 export default {
-  name: "logout",
+  name: 'Logout',
   components: {
     AppButton
   },
-  data() {
-  },
   methods: {
     logout() {
-      
+      this.$auth.logout()
     }
   }
-};
+}
 </script>
 
 <style scoped>

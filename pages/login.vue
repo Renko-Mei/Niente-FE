@@ -2,8 +2,8 @@
   <div class="admin-auth-page">
     <div class="auth-container">
       <form @submit.prevent="onSubmit">
-        <AppControlInput type="username" v-model="username">Username</AppControlInput>
-        <AppControlInput type="password" v-model="password">Password</AppControlInput>
+        <AppControlInput v-model="username" type="username">Username</AppControlInput>
+        <AppControlInput v-model="password" type="password">Password</AppControlInput>
         <AppButton type="submit">Login</AppButton>
       </form>
     </div>
@@ -38,10 +38,15 @@ export default {
       // .then(() => {
       //   this.$router.push('/admin/');
       // });
+      this.$auth.loginWith("local", {
+        data: {
+          Username: this.username,
+          Password: this.password,
+          RememberMe: this.rememberMe
+        }
+      })
     }
   }
-
-  
 };
 </script>
 
